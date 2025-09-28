@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Characters</h1>
+
+<ul class="character-list">
+    {% for character in characters %}
+    <li>
+        <a>{{ character.char_name }}</a>
+
+        <form action="{{ url_for('update_character', username=username, char_name=character.char_name) }}" method="GET">
+            <button type="submit" class="update-button">Update</button>
+        </form>
+
+    </li>
+    {% endfor %}
+</ul>
+
+
+<form action="{{url_for('add_character', username=user.username)}}" method="POST">
+    <label for="add_character">Add new Character</label>
+    <input type="text" id="add_character" name="add_character" placeholder="Add a new character" required>
+    <input type="submit" value="Create Character">
+</form>
+
+{% endblock %}
